@@ -2,12 +2,11 @@ import time
 
 from kivy.app import App
 from kivy.uix.button import Button
-
 from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
-
+from kivy.clock import Clock
 Config.set('graphics', 'resizable', 0)
 Config.set('graphics', 'height', 400)
 Config.set('graphics', 'width', 300)
@@ -22,7 +21,10 @@ class MyApp(App):
             self.calculation_result = eval(self.label_down.text)
             self.formula = str(self.calculation_result)
         except ZeroDivisionError:
-            self.formula="ошибка"
+            self.label_top.text = "схлопывание"
+            self.label_down.text = "вселенной"
+            self.formula = ""
+            return
         self.update_label_down()
 
     def clear_label_down(self, instance):
